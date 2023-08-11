@@ -4,16 +4,15 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-  @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      #cookies[:],
-      redirect_to root_path, notice: "Succesfully created account"
-    else
-      render::new
-    params
-    params[:user]
-    end
+    @user = User.new(user_params)
+      if @user.save
+        session[:user_id] = @user.id
+        #cookies[:user_id],
+        redirect_to root_path, notice: "Succesfully created account"
+      else
+        render :new
+      params[:user]
+      end
   end
 
   private

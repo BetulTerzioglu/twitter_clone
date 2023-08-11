@@ -1,23 +1,31 @@
 <h1> Sign Up </h1>
 
-<%= form_with model:@user, url: sign_up_path do |form| %>
-<%= form.label:email %>
-<div class= "mb-3">
- <%= form.text_field:email , class: "form-control", placeholder:"name@example.com" %>
- </div>
+<%= form_with model: @user, url: sign_up_path do |form| %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <% @user.errors.full_messages.each do |messages| %>
+        <div><%= messages %></div>
+      <% end %>
+    </div>
+  <% end %>
 
-<%= form.label:password %>
- <div class = "mb-3">
- <%= form.password_field:password, class: "form-control", placeholder:"password" %>
- </div>
+  <div class= "mb-3">
+    <%= form.label :email %>
+    <%= form.text_field:email , class: "form-control", placeholder:"name@example.com" %>
+  </div>
 
-<%= form.label:password_confirmation %>
- <div class = "mb-3">
- <%= form.password_field:password_confirmation, class: "form-control" , placeholder: "password" %>
- </div>
+  <div class = "mb-3">
+    <%= form.label :password %>
+    <%= form.password_field:password, class: "form-control", placeholder:"password" %>
+  </div>
 
-<div class = "mb-3">
- <%= form.submit "Sign Up", class: "btn btn-primary" %>
- </div>
+  <div class = "mb-3">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field:password_confirmation, class: "form-control" , placeholder: "password" %>
+  </div>
+
+  <div class = "mb-3">
+  <%= form.submit "Sign Up", class: "btn btn-primary" %>
+  </div>
 
  <% end %>
